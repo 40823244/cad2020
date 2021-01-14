@@ -235,6 +235,97 @@
 <p>偏心輪模擬</p>
 <p>問題:偏心倫可以轉，但滑塊會穿模噴飛，經過討論後原因可能是導軌跟軸沒有間隙的問題。</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" data-mce-fragment="1" frameborder="0" height="315" src="https://www.youtube.com/embed/_SN9tZHclfo" width="560"></iframe></p>
+<h1>筆記</h1>
+<h4>製作金鑰</h4>
+<p>點選資料夾的Portablegit<span>→bin→sh.exe</span></p>
+<p><span><img alt="" height="510" src="https://40823245.github.io/cad2020/images/ssh-11.PNG" width="976"/></span></p>
+<h6>輸入ssh-keygen -t rsa -b 4096 -C "40823245"</h6>
+<p><span>請自行改成自己的學號</span></p>
+<p>案enter<span>→輸入/y/tmp/id_rsa→案2次enter</span></p>
+<p><span><img alt="" height="401" src="https://40823245.github.io/cad2020/images/ssh-12.PNG" width="630"/></span></p>
+<p>下載<a href="https://40823245.github.io/cad2020/downloads/putty.zip">putty</a>、<a href="https://40823245.github.io/cad2020/downloads/putty_home.zip">putty_home</a>、<a href="https://40823245.github.io/cad2020/downloads/GitExtensions.zip">GitExtensions</a><span>(請自行更改路徑)</span></p>
+<p>將start移到白窗  並新增 </p>
+<div>
+<div class="syntaxhighlighter html" id="highlighter_984611">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="html plain">set GIT_HOME=%Disk%:\Portablegit\bin\</code></div>
+<div class="line number2 index1 alt1"><code class="html plain">set GIT_SSH=%Disk%:\putty\plink.exe</code></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p></p>
+<p><img alt="" height="729" src="https://40823245.github.io/cad2020/images/ssh-13.PNG" width="563"/></p>
+<p>打開.git資料夾，把config移到白窗</p>
+<p>如沒有.git資料夾 打開隱藏的項目</p>
+<p><img alt="" height="349" src="https://40823245.github.io/cad2020/images/ssh-14.PNG" width="1191"/></p>
+<p>新增<span>[remote "origin"]裡的</span>url = git@github.com:40823245/cad2020.git</p>
+<p><img alt="" height="444" src="https://40823245.github.io/cad2020/images/ssh.PNG" width="562"/></p>
+<p><span>file→save</span></p>
+<p><span>打開putty資料夾的puttygen.exe</span></p>
+<p><span>點load，找到id_rsa</span></p>
+<p><span><img alt="" height="523" src="https://40823245.github.io/cad2020/images/ssh-15.PNG" width="789"/></span></p>
+<p><span>案是→Save private key→案是→輸入學號(存.ppk檔)</span></p>
+<p><span>打開putty.exe</span></p>
+<p><span><img alt="" height="441" src="https://40823245.github.io/cad2020/images/ssh-16.PNG" width="454"/></span></p>
+<p><span></span>若沒有github.com，在Host Name和Save Sessions打<span>github.com案Save</span></p>
+<p><span><img alt="" height="442" src="https://40823245.github.io/cad2020/images/ssh-19.png" width="452"/></span></p>
+<p>設定proxy(使用自家網路、手機網路請選None)</p>
+<p>看你的網路連到哪一台 就打一樣的proxy</p>
+<p><img alt="" height="442" src="https://40823245.github.io/cad2020/images/ssh-20.png" width="452"/></p>
+<p>打開SSH裡面的Auth</p>
+<p>選擇你所生產的金鑰檔案(.ppk)</p>
+<p>回到session點選save再open</p>
+<p><img alt="" height="420" src="https://40823245.github.io/cad2020/images/ssh-1.PNG" width="667"/></p>
+<p>在home新增.ssh資料夾</p>
+<div>
+<div class="syntaxhighlighter html" id="highlighter_802177">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td class="gutter">
+<div class="line number1 index0 alt2">1</div>
+<div class="line number2 index1 alt1">2</div>
+<div class="line number3 index2 alt2">3</div>
+<div class="line number4 index3 alt1">4</div>
+<div class="line number5 index4 alt2">5</div>
+<div class="line number6 index5 alt1">6</div>
+<div class="line number7 index6 alt2">7</div>
+<div class="line number8 index7 alt1">8</div>
+<div class="line number9 index8 alt2">9</div>
+</td>
+<td class="code">
+<div class="container">
+<div class="line number1 index0 alt2"><code class="html plain">ProxyCommand y:/putty/plink.exe github.com %h %p</code></div>
+<div class="line number2 index1 alt1"><code class="html spaces"> </code> </div>
+<div class="line number3 index2 alt2"><code class="html plain">Host github.com</code></div>
+<div class="line number4 index3 alt1"><code class="html spaces">    </code><code class="html plain">User git</code></div>
+<div class="line number5 index4 alt2"><code class="html spaces">    </code><code class="html plain">Port 22</code></div>
+<div class="line number6 index5 alt1"><code class="html spaces">    </code><code class="html plain">Hostname github.com</code></div>
+<div class="line number7 index6 alt2"><code class="html spaces"> </code> </div>
+<div class="line number8 index7 alt1"><code class="html spaces">    </code><code class="html plain">TCPKeepAlive yes</code></div>
+<div class="line number9 index8 alt2"><code class="html spaces">    </code><code class="html plain">IdentitiesOnly yes</code></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p></p>
+<p>將上面的指令複製到白窗並另存config</p>
+<p>到倉儲網頁新增金鑰(右上Settings)</p>
 <p></p>
 <h1>心得</h1>
 <p>  在第一堂課的時候，第一個作業是畫soilworks的立體圖，本來是想說每天畫一點每天畫一點上傳並分享給組員，但我們小組有人只花兩天就上傳完了，讓本來想盡一份心力的我有點小難過，但我最後還是有自己畫完。在做分組專題的時候，我們討論為推球機，我分配到的是模擬組，在機構設計組畫完圖後交給模擬組，但在模擬組模擬過後還是有些地方需修改，所以時常與機構組討論並修改，在日復一日的討論與修改後或許模擬所出現的錯誤變少了許多，小組的作品一步一步朝成功的方向前進，很開心大家的幫忙與討論。</p>
